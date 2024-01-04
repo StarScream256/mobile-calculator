@@ -166,9 +166,9 @@
                 android:id="@+id/loginPasswordEyeIcon"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginStart="320dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="@+id/password_layout"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="@+id/password_layout"
                 app:layout_constraintTop_toTopOf="@+id/password_layout"
                 app:srcCompat="@drawable/eye_svgrepo_com" />
 
@@ -183,32 +183,32 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="113dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/login_button"
         android:paddingHorizontal="24dp"
         android:text="@string/registration"
         android:textSize="16dp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registrationWrapLayout" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login_registration_confirmation"
+            android:text="@string/registration_login_confirmation"
             android:textSize="16dp" />
 
         <TextView
@@ -217,7 +217,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:text="@string/registration"
+            android:onClick="navigateToLogin"
+            android:text="@string/login_title"
             android:textColor="#ED5F0F"
             android:textSize="16dp"
             android:textStyle="bold" />
