@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Calculator</string>
+    <string name="login_title">Login</string>
+    <string name="login_description">Masukkan username dan password untuk menlanjutkan ke kalkulator</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="name_hint">Nama lengkap</string>
+    <string name="email_hint">Email</string>
+    <string name="login_button">Login</string>
+    <string name="login_registration_confirmation">Tidak punya akun?</string>
+    <string name="registration">Registrasi</string>
+    <string name="registration_description">Masukkan kredensial untuk membuat akun</string>
 </resources>

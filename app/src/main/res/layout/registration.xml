@@ -8,29 +8,29 @@
     android:padding="24dp">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/registrationTitle"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="16dp"
-        android:text="@string/login_title"
+        android:text="@string/registration"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/registationDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="@string/login_description"
+        android:text="@string/registration_description"
         android:textSize="16sp"
         android:textColor="#A5000000"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/registrationWrapLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="148dp"
@@ -38,11 +38,43 @@
         tools:layout_editor_absoluteX="24dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/username_layout"
+            android:id="@+id/name_layout"
             android:layout_width="match_parent"
             android:layout_height="54dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/nameInput"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:autofillHints="username"
+                android:background="@drawable/border"
+                android:ems="10"
+                android:hint="@string/name_hint"
+                android:inputType="text"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="-3dp" />
+
+            <ImageView
+                android:id="@+id/registrationNameIcon"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="@+id/name_layout"
+                app:layout_constraintTop_toTopOf="@+id/name_layout"
+                app:srcCompat="@drawable/user" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/username_layout"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_layout">
 
             <EditText
                 android:id="@+id/usernameInput"
@@ -69,12 +101,44 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/email_layout"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username_layout">
+
+            <EditText
+                android:id="@+id/emailInput"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:autofillHints="emailAddress"
+                android:background="@drawable/border"
+                android:ems="10"
+                android:hint="@string/email_hint"
+                android:inputType="text"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="-3dp" />
+
+            <ImageView
+                android:id="@+id/loginEmailIcon"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="@+id/email_layout"
+                app:layout_constraintTop_toTopOf="@+id/email_layout"
+                app:srcCompat="@drawable/email_svgrepo_com" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/password_layout"
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/email_layout">
 
             <EditText
                 android:id="@+id/passwordInput"
@@ -113,18 +177,21 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!--    Button registrasi-->
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="113dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/login_button"
-        android:text="@string/login_button"
+        android:paddingHorizontal="24dp"
+        android:text="@string/registration"
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/registrationWrapLayout" />
 
     <LinearLayout
         android:layout_width="wrap_content"
