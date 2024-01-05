@@ -11,4 +11,7 @@
     <string name="registration_login_confirmation">Sudah punya akun?</string>
     <string name="registration">Registrasi</string>
     <string name="registration_description">Masukkan kredensial untuk membuat akun</string>
+
+    <string name="basic">Basic</string>
+    <string name="binary">Binary</string>
 </resources>

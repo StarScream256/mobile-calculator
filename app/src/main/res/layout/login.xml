@@ -84,7 +84,7 @@
                 android:background="@drawable/border"
                 android:ems="10"
                 android:hint="@string/password_hint"
-                android:inputType="text"
+                android:inputType="textPassword"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="-3dp" />
 
@@ -99,11 +99,12 @@
                 app:srcCompat="@drawable/lock" />
 
             <ImageView
-                android:id="@+id/loginPasswordEyeIcon"
+                android:id="@+id/togglePasswordIconLogin"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
+                android:onClick="togglePasswordLogin"
                 app:layout_constraintEnd_toEndOf="@+id/password_layout"
                 app:layout_constraintTop_toTopOf="@+id/password_layout"
                 app:srcCompat="@drawable/eye_svgrepo_com" />
