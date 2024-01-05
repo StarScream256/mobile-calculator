@@ -41,4 +41,8 @@ public class MainActivity extends AppCompatActivity {
         passwordInput.setInputType(inputType);
         passwordInput.setSelection(passwordInput.length());
     }
+
+    public void login(View view) {
+        startActivity(new Intent(MainActivity.this, BasicCalculatorActivity.class));
+    }
 }
