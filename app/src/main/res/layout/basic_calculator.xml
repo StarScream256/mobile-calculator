@@ -64,14 +64,31 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_weight="1"
+            android:onClick="openSaveDialog"
             app:srcCompat="@drawable/save_svgrepo_com" />
 
     </LinearLayout>
 
-    <TableLayout
+    <EditText
+        android:id="@+id/inputExpression"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/calculator_input"
+        android:clickable="true"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="none"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_weight="1"
         android:shrinkColumns="*"
@@ -85,6 +102,7 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnClear"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -94,6 +112,7 @@
                 android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnOpenBracket"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -103,6 +122,7 @@
                 android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCloseBracket"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -112,6 +132,7 @@
                 android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDivide"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -127,6 +148,7 @@
             android:layout_marginTop="10dp">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNum7"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -136,6 +158,7 @@
                 android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNum8"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -145,6 +168,7 @@
                 android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNum9"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -154,6 +178,7 @@
                 android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnTimes"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -169,6 +194,7 @@
             android:layout_marginTop="10dp">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNum4"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -178,6 +204,7 @@
                 android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNum5"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -187,6 +214,7 @@
                 android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNum6"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -196,6 +224,7 @@
                 android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnMinus"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -211,6 +240,7 @@
             android:layout_marginTop="10dp">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNum1"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -220,6 +250,7 @@
                 android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNum2"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -229,6 +260,7 @@
                 android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNum3"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -238,6 +270,7 @@
                 android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnPlus"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -253,6 +286,7 @@
             android:layout_marginTop="10dp">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDelete"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -263,6 +297,7 @@
                 android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNum0"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -272,6 +307,7 @@
                 android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnComma"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -281,6 +317,7 @@
                 android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnEqual"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
