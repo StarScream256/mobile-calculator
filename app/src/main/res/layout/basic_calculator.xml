@@ -57,6 +57,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_weight="1"
+            android:onClick="navigateToHistory"
             app:srcCompat="@drawable/history" />
 
         <ImageView
@@ -77,8 +78,10 @@
         android:background="@drawable/calculator_input"
         android:clickable="true"
         android:ems="10"
+        android:gravity="right"
         android:focusable="false"
         android:inputType="none"
+        android:textSize="30sp"
         android:paddingHorizontal="12dp"
         android:paddingVertical="15dp"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout"
@@ -103,41 +106,26 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnClear"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_clear_button"
-                android:minWidth="70dp"
-                android:text="C"
-                android:textSize="18sp" />
+                android:text="C" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnOpenBracket"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_normal_button"
-                android:minWidth="70dp"
-                android:text="("
-                android:textSize="18sp" />
+                android:text="(" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCloseBracket"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_normal_button"
-                android:minWidth="70dp"
-                android:text=")"
-                android:textSize="18sp" />
+                android:text=")" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnDivide"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_operation_button"
-                android:minWidth="70dp"
                 android:text="÷"
                 android:textSize="25sp" />
         </TableRow>
@@ -149,41 +137,26 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNum7"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_normal_button"
-                android:minWidth="70dp"
-                android:text="7"
-                android:textSize="18sp" />
+                android:text="7" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNum8"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_normal_button"
-                android:minWidth="70dp"
-                android:text="8"
-                android:textSize="18sp" />
+                android:text="8" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNum9"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_normal_button"
-                android:minWidth="70dp"
-                android:text="9"
-                android:textSize="18sp" />
+                android:text="9" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnTimes"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_operation_button"
-                android:minWidth="70dp"
                 android:text="×"
                 android:textSize="25sp" />
         </TableRow>
@@ -195,41 +168,26 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNum4"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_normal_button"
-                android:minWidth="70dp"
-                android:text="4"
-                android:textSize="18sp" />
+                android:text="4" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNum5"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_normal_button"
-                android:minWidth="70dp"
-                android:text="5"
-                android:textSize="18sp" />
+                android:text="5" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNum6"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_normal_button"
-                android:minWidth="70dp"
-                android:text="6"
-                android:textSize="18sp" />
+                android:text="6" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnMinus"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_operation_button"
-                android:minWidth="70dp"
                 android:text="-"
                 android:textSize="25sp" />
         </TableRow>
@@ -241,41 +199,26 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNum1"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_normal_button"
-                android:minWidth="70dp"
-                android:text="1"
-                android:textSize="18sp" />
+                android:text="1" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNum2"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_normal_button"
-                android:minWidth="70dp"
-                android:text="2"
-                android:textSize="18sp" />
+                android:text="2" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNum3"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_normal_button"
-                android:minWidth="70dp"
-                android:text="3"
-                android:textSize="18sp" />
+                android:text="3" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnPlus"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_operation_button"
-                android:minWidth="70dp"
                 android:text="+"
                 android:textSize="25sp" />
         </TableRow>
@@ -287,42 +230,26 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnDelete"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_clear_button"
-                android:minWidth="70dp"
-                android:text="Del"
-                android:textAllCaps="false"
-                android:textSize="18sp" />
+                android:text="Del" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNum0"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_normal_button"
-                android:minWidth="70dp"
-                android:text="0"
-                android:textSize="18sp" />
+                android:text="0" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnComma"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_normal_button"
-                android:minWidth="70dp"
-                android:text=","
-                android:textSize="18sp" />
+                android:text="," />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnEqual"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                style="@style/baseBtn"
                 android:background="@drawable/calculator_equal_button"
-                android:minWidth="70dp"
                 android:text="="
                 android:textSize="25sp" />
         </TableRow>

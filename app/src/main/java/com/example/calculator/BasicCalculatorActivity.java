@@ -6,20 +6,27 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.ValueCallback;
 import android.webkit.WebView;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.xml.sax.Parser;
+
+import java.util.ArrayList;
 
 public class BasicCalculatorActivity extends AppCompatActivity {
 
     private EditText inputExpression;
     private AppCompatButton btnClear, btnDelete, btnOpenBracket, btnCloseBracket, btnDivide, btnTimes, btnMinus, btnPlus, btnComma, btnEqual;
     private AppCompatButton btnNum0, btnNum1, btnNum2, btnNum3, btnNum4, btnNum5, btnNum6, btnNum7, btnNum8, btnNum9;
+    private ArrayList<String> resultSaver = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,16 +77,27 @@ public class BasicCalculatorActivity extends AppCompatActivity {
         btnNum9.setOnClickListener(onClickListener);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        resultSaver.clear();
+    }
+
     // Listener ketika setiap button diklik
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             AppCompatButton button = (AppCompatButton) v;
             String buttonText = button.getText().toString();
+            
+            if (inputExpression.getText().toString().equals("Bermasalah")) inputExpression.setText("");
 
             if (buttonText.equals("=")) {
+                evaluateExp(inputExpression.getText().toString());
             } else if (buttonText.equals("C")) {
                 inputExpression.setText(null);
+            } else if (buttonText.equals("Del")) {
+                deleteExpression();
             } else {
                 updateExpression(buttonText);
             }
@@ -92,15 +110,43 @@ public class BasicCalculatorActivity extends AppCompatActivity {
         inputExpression.setText(currentExpression + text);
     }
 
-    public void evaluateExp(String expression) {
+    // hapus 1 karakter dari belakang ketika button "Del" (Delete) diklik
+    private void deleteExpression() {
+        String exp = inputExpression.getText().toString();
+        if (exp.length() >= 1) inputExpression.setText(exp.substring(0, exp.length() - 1));
+    }
+
+    private void evaluateExp(String expression) {
         WebView webView = new WebView(BasicCalculatorActivity.this);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.evaluateJavascript("", new ValueCallback<String>() {
+
+        if (expression.contains("÷")) expression = expression.replace("÷", "/");
+        if (expression.contains("×")) expression = expression.replace("×", "*");
+        if (expression.contains(",")) expression = expression.replace(",", ".");
+
+        String script = "javascript:(function() {" +
+                "var result = eval("+ expression +");" +
+                "return result;" +
+                "})()";
+        final String modExp = expression;
+        webView.evaluateJavascript(script, new ValueCallback<String>() {
             @Override
             public void onReceiveValue(String value) {
-
+                if (value.equals("null") || value.equals("")) {
+                    inputExpression.setText("Bermasalah");
+                    tempSaveResult(modExp, "Bermasalah");
+                } else {
+                    if (value.contains(".")) value = value.replace(".", ",");
+                    tempSaveResult(modExp, value);
+                    inputExpression.setText(value);
+                }
             }
         });
+    }
+
+    private void tempSaveResult(String expression, String result) {
+        String expRes = expression + "=" + result;
+        resultSaver.add(expRes);
     }
 
     // Tampilkan popup ketika klik save
@@ -109,9 +155,19 @@ public class BasicCalculatorActivity extends AppCompatActivity {
         View saveDialogView = inflater.inflate(R.layout.save_dialog, null);
 
         final EditText descriptionText = saveDialogView.findViewById(R.id.descriptionText);
+        TextView currentCalculation = saveDialogView.findViewById(R.id.currentCalculation);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(saveDialogView);
+
+        if (resultSaver.size() < 1) {
+            currentCalculation.setText("Tidak ada riwayat hitungan!");
+            currentCalculation.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
+        } else {
+            String currentCalc = resultSaver.get(resultSaver.size() - 1);
+            currentCalculation.setText(currentCalc);
+            currentCalculation.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+        }
 
         builder.setPositiveButton("Simpan", new DialogInterface.OnClickListener() {
             @Override
@@ -132,5 +188,11 @@ public class BasicCalculatorActivity extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_background);
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
+    }
+
+    public void navigateToHistory(View view) {
+        Intent intent = new Intent(BasicCalculatorActivity.this, HistoryActivity.class);
+        intent.putExtra("resultSaver", resultSaver);
+        startActivity(intent);
     }
 }
