@@ -31,27 +31,27 @@
             android:layout_weight="1"
             android:minHeight="0dp"
             android:minWidth="0dp"
+            android:onClick="navigateToBasicCalculator"
             android:paddingVertical="5dp"
             android:paddingHorizontal="10dp"
             android:layout_marginEnd="3dp"
             android:textAllCaps="false"
-            android:background="@drawable/calculator_selected_button"
+            android:background="@drawable/calculator_unselected_button"
             android:text="@string/basic" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/binaryCalculatorSelector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:minHeight="0dp"
-            android:minWidth="0dp"
-            android:paddingVertical="5dp"
-            android:paddingHorizontal="10dp"
             android:layout_marginStart="3dp"
-            android:textAllCaps="false"
-            android:onClick="navigateToBinaryCalculator"
-            android:background="@drawable/calculator_unselected_button"
-            android:text="@string/binary" />
+            android:layout_weight="1"
+            android:background="@drawable/calculator_selected_button"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:text="@string/binary"
+            android:textAllCaps="false" />
 
         <ImageView
             android:id="@+id/history"
@@ -139,18 +139,21 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNum7"
                 style="@style/baseBtn"
+                android:enabled="false"
                 android:background="@drawable/calculator_normal_button"
                 android:text="7" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNum8"
                 style="@style/baseBtn"
+                android:enabled="false"
                 android:background="@drawable/calculator_normal_button"
                 android:text="8" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNum9"
                 style="@style/baseBtn"
+                android:enabled="false"
                 android:background="@drawable/calculator_normal_button"
                 android:text="9" />
 
@@ -170,18 +173,21 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNum4"
                 style="@style/baseBtn"
+                android:enabled="false"
                 android:background="@drawable/calculator_normal_button"
                 android:text="4" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNum5"
                 style="@style/baseBtn"
+                android:enabled="false"
                 android:background="@drawable/calculator_normal_button"
                 android:text="5" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNum6"
                 style="@style/baseBtn"
+                android:enabled="false"
                 android:background="@drawable/calculator_normal_button"
                 android:text="6" />
 
@@ -207,12 +213,14 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNum2"
                 style="@style/baseBtn"
+                android:enabled="false"
                 android:background="@drawable/calculator_normal_button"
                 android:text="2" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNum3"
                 style="@style/baseBtn"
+                android:enabled="false"
                 android:background="@drawable/calculator_normal_button"
                 android:text="3" />
 
@@ -244,6 +252,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnComma"
                 style="@style/baseBtn"
+                android:enabled="false"
                 android:background="@drawable/calculator_normal_button"
                 android:text="," />
 

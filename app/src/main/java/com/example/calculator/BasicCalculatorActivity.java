@@ -119,6 +119,7 @@ public class BasicCalculatorActivity extends AppCompatActivity {
     private void evaluateExp(String expression) {
         WebView webView = new WebView(BasicCalculatorActivity.this);
         webView.getSettings().setJavaScriptEnabled(true);
+        if (expression.startsWith("0")) expression = expression.replaceFirst("0", "");
 
         if (expression.contains("÷")) expression = expression.replace("÷", "/");
         if (expression.contains("×")) expression = expression.replace("×", "*");
@@ -194,5 +195,9 @@ public class BasicCalculatorActivity extends AppCompatActivity {
         Intent intent = new Intent(BasicCalculatorActivity.this, HistoryActivity.class);
         intent.putExtra("resultSaver", resultSaver);
         startActivity(intent);
+    }
+
+    public void navigateToBinaryCalculator(View view) {
+        startActivity(new Intent(BasicCalculatorActivity.this, BinaryCalculatorActivity.class));
     }
 }

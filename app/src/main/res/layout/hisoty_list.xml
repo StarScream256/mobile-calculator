@@ -48,7 +48,7 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="45dp"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_gravity="center"
             android:src="@drawable/baseline_more_vert_24" />
