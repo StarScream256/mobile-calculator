@@ -11,12 +11,9 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.webkit.ValueCallback;
 import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import org.xml.sax.Parser;
 
 import java.util.ArrayList;
 
@@ -75,6 +72,8 @@ public class BasicCalculatorActivity extends AppCompatActivity {
         btnNum7.setOnClickListener(onClickListener);
         btnNum8.setOnClickListener(onClickListener);
         btnNum9.setOnClickListener(onClickListener);
+
+
     }
 
     @Override
@@ -84,7 +83,7 @@ public class BasicCalculatorActivity extends AppCompatActivity {
     }
 
     // Listener ketika setiap button diklik
-    private View.OnClickListener onClickListener = new View.OnClickListener() {
+    private final View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             AppCompatButton button = (AppCompatButton) v;
@@ -125,27 +124,29 @@ public class BasicCalculatorActivity extends AppCompatActivity {
         if (expression.contains("×")) expression = expression.replace("×", "*");
         if (expression.contains(",")) expression = expression.replace(",", ".");
 
-        String script = "javascript:(function() {" +
-                "var result = eval("+ expression +");" +
-                "return result;" +
+        String script = "" +
+                "javascript:(function() {" +
+                    "var result = eval("+ expression +");" +
+                    "return result;" +
                 "})()";
-        final String modExp = expression;
-        webView.evaluateJavascript(script, new ValueCallback<String>() {
-            @Override
-            public void onReceiveValue(String value) {
-                if (value.equals("null") || value.equals("")) {
-                    inputExpression.setText("Bermasalah");
-                    tempSaveResult(modExp, "Bermasalah");
-                } else {
-                    if (value.contains(".")) value = value.replace(".", ",");
-                    tempSaveResult(modExp, value);
-                    inputExpression.setText(value);
-                }
+
+        final String finalExpression = expression;
+        webView.evaluateJavascript(script, value -> {
+            if (value.equals("null") || value.equals("")) {
+                inputExpression.setText("Bermasalah");
+                saveResult(finalExpression, "Bermasalah");
+            } else {
+                if (value.contains(".")) value = value.replace(".", ",");
+                if (value.contains("*")) value = value.replace("*", "×");
+                if (value.contains("/")) value = value.replace("/", "÷");
+
+                saveResult(finalExpression, value);
+                inputExpression.setText(value);
             }
         });
     }
 
-    private void tempSaveResult(String expression, String result) {
+    private void saveResult(String expression, String result) {
         String expRes = expression + "=" + result;
         resultSaver.add(expRes);
     }
@@ -155,7 +156,6 @@ public class BasicCalculatorActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View saveDialogView = inflater.inflate(R.layout.save_dialog, null);
 
-        final EditText descriptionText = saveDialogView.findViewById(R.id.descriptionText);
         TextView currentCalculation = saveDialogView.findViewById(R.id.currentCalculation);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -166,6 +166,9 @@ public class BasicCalculatorActivity extends AppCompatActivity {
             currentCalculation.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
         } else {
             String currentCalc = resultSaver.get(resultSaver.size() - 1);
+            if (currentCalc.contains(".")) currentCalc = currentCalc.replace(".", ",");
+            if (currentCalc.contains("*")) currentCalc = currentCalc.replace("*", "×");
+            if (currentCalc.contains("/")) currentCalc = currentCalc.replace("/", "÷");
             currentCalculation.setText(currentCalc);
             currentCalculation.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
         }
@@ -173,20 +176,19 @@ public class BasicCalculatorActivity extends AppCompatActivity {
         builder.setPositiveButton("Simpan", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String descriptedText = descriptionText.getText().toString();
+
             }
         });
 
         builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                descriptionText.setText(null);
                 dialog.dismiss();
             }
         });
 
         AlertDialog dialog = builder.create();
-        dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_background);
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.style_popup_background);
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
     }
@@ -194,6 +196,13 @@ public class BasicCalculatorActivity extends AppCompatActivity {
     public void navigateToHistory(View view) {
         Intent intent = new Intent(BasicCalculatorActivity.this, HistoryActivity.class);
         intent.putExtra("resultSaver", resultSaver);
+        startActivity(intent);
+    }
+
+    public void navigateToProfile(View view) {
+        Intent intent = new Intent(BasicCalculatorActivity.this, ProfileActivity.class);
+        intent.putExtra("resultSaver", resultSaver);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 }

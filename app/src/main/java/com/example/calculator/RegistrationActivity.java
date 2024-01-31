@@ -33,7 +33,7 @@ public class RegistrationActivity extends AppCompatActivity {
     public void togglePasswordRegistration(View view) {
         passwordVisible = !passwordVisible;
 
-        int drawableId = (passwordVisible) ? R.drawable.eye_slash_svgrepo_com : R.drawable.eye_svgrepo_com;
+        int drawableId = (passwordVisible) ? R.drawable.icon_eye_slash : R.drawable.icon_eye;
         toggleIcon.setImageResource(drawableId);
 
         int inputType = (passwordVisible) ?

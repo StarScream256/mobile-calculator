@@ -8,11 +8,12 @@
     <string name="email_hint">Email</string>
     <string name="login_button">Login</string>
     <string name="login_registration_confirmation">Tidak punya akun?</string>
+
     <string name="registration_login_confirmation">Sudah punya akun?</string>
     <string name="registration">Registrasi</string>
     <string name="registration_description">Masukkan kredensial untuk membuat akun</string>
 
-    <string name="basic">Basic</string>
-    <string name="binary">Binary</string>
-    <string name="ghp">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</string>
+    <string name="history_title">Saved History</string>
+
+    <string name="profile_title">Profile</string>
 </resources>

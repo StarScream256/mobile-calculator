@@ -22,9 +22,10 @@
             android:layout_gravity="start"
             android:layout_weight="1"
             android:paddingVertical="3dp"
+            android:onClick="navigateToProfile"
             app:layout_constraintStart_toStartOf="@id/topNavLayout"
             app:layout_constraintTop_toTopOf="@id/topNavLayout"
-            app:srcCompat="@drawable/user" />
+            app:srcCompat="@drawable/icon_user" />
 
         <ImageView
             android:id="@+id/history"
@@ -36,7 +37,7 @@
             android:onClick="navigateToHistory"
             app:layout_constraintEnd_toStartOf="@+id/save"
             app:layout_constraintTop_toTopOf="@id/topNavLayout"
-            app:srcCompat="@drawable/history" />
+            app:srcCompat="@drawable/icon_history" />
 
         <ImageView
             android:id="@+id/save"
@@ -47,7 +48,7 @@
             android:paddingVertical="4dp"
             app:layout_constraintEnd_toEndOf="@+id/topNavLayout"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/save_svgrepo_com" />
+            app:srcCompat="@drawable/icon_save" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -57,9 +58,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:background="@drawable/calculator_input"
-        android:clickable="true"
+        android:clickable="false"
         android:ems="10"
-        android:gravity="right"
+        android:gravity="end"
         android:focusable="false"
         android:inputType="none"
         android:textSize="30sp"

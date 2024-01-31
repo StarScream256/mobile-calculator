@@ -49,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:autofillHints="username"
-                android:background="@drawable/border"
+                android:background="@drawable/style_border"
                 android:ems="10"
                 android:hint="@string/username_hint"
                 android:inputType="text"
@@ -64,7 +64,7 @@
                 android:layout_marginTop="12dp"
                 app:layout_constraintStart_toStartOf="@+id/username_layout"
                 app:layout_constraintTop_toTopOf="@+id/username_layout"
-                app:srcCompat="@drawable/user" />
+                app:srcCompat="@drawable/icon_user" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -81,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:autofillHints="username"
-                android:background="@drawable/border"
+                android:background="@drawable/style_border"
                 android:ems="10"
                 android:hint="@string/password_hint"
                 android:inputType="textPassword"
@@ -96,7 +96,7 @@
                 android:layout_marginTop="12dp"
                 app:layout_constraintStart_toStartOf="@+id/password_layout"
                 app:layout_constraintTop_toTopOf="@+id/password_layout"
-                app:srcCompat="@drawable/lock" />
+                app:srcCompat="@drawable/icon_lock" />
 
             <ImageView
                 android:id="@+id/togglePasswordIconLogin"
@@ -107,7 +107,7 @@
                 android:onClick="togglePasswordLogin"
                 app:layout_constraintEnd_toEndOf="@+id/password_layout"
                 app:layout_constraintTop_toTopOf="@+id/password_layout"
-                app:srcCompat="@drawable/eye_svgrepo_com" />
+                app:srcCompat="@drawable/icon_eye" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -119,14 +119,44 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:background="@drawable/login_button"
+        android:background="@drawable/style_login_button"
         android:text="@string/login_button"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:onClick="login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <LinearLayout
+        android:id="@+id/loginErrorContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:background="@drawable/style_login_error_container"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button">
+
+        <TextView
+            android:id="@+id/loginErrorTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="Login gagal" />
+
+        <TextView
+            android:id="@+id/loginErrorMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#323131"
+            android:text="" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -144,21 +174,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login_registration_confirmation"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:layout_weight="1"
             android:onClick="navigateToRegistration"
             android:paddingVertical="15dp"
             android:text="@string/registration"
             android:textColor="#ED5F0F"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textStyle="bold" />
-
     </LinearLayout>
 
 

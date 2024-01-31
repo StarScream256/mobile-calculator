@@ -19,36 +19,36 @@
         android:id="@+id/currentCalculation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16dp"
+        android:textSize="18sp"
         android:gravity="center"
         android:textColor="#555454"
         android:layout_marginTop="10dp" />
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="12dp"
-        android:background="?android:attr/listDivider" />
+<!--    <View-->
+<!--        android:id="@+id/divider"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:background="?android:attr/listDivider" />-->
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:textSize="14dp"
-        android:text="Tambahkan keterangan (Opsional)" />
+<!--    <TextView-->
+<!--        android:id="@+id/textView7"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:textSize="14dp"-->
+<!--        android:text="Tambahkan keterangan (Opsional)" />-->
 
-    <EditText
-        android:id="@+id/descriptionText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:paddingLeft="18dp"
-        android:paddingVertical="10dp"
-        android:layout_marginTop="6dp"
-        android:inputType="text"
-        android:textSize="16sp"
-        android:background="@drawable/dialog_desc_input"
-        android:hint="Masukkan keterangan" />
+<!--    <EditText-->
+<!--        android:id="@+id/descriptionText"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:ems="10"-->
+<!--        android:paddingLeft="18dp"-->
+<!--        android:paddingVertical="10dp"-->
+<!--        android:layout_marginTop="6dp"-->
+<!--        android:inputType="text"-->
+<!--        android:textSize="16sp"-->
+<!--        android:background="@drawable/dialog_desc_input"-->
+<!--        android:hint="Masukkan keterangan" />-->
 </LinearLayout>
