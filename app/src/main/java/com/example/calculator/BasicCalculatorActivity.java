@@ -196,8 +196,4 @@ public class BasicCalculatorActivity extends AppCompatActivity {
         intent.putExtra("resultSaver", resultSaver);
         startActivity(intent);
     }
-
-    public void navigateToBinaryCalculator(View view) {
-        startActivity(new Intent(BasicCalculatorActivity.this, BinaryCalculatorActivity.class));
-    }
 }
