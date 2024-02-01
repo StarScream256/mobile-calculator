@@ -49,14 +49,20 @@ public class HistoryAdapter extends BaseAdapter {
         String calc = resultSaver.get(position).substring(0, equalSign);
         String res = resultSaver.get(position).substring(equalSign + 1);
 
+        if (calc.contains(".")) calc = calc.replace(".", ",");
+        if (calc.contains("*")) calc = calc.replace("*", "×");
+        if (calc.contains("/")) calc = calc.replace("/", "÷");
+
         calculation.setText(calc);
         resultCalc.setText(res);
 
+        final String finalCalc = calc;
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, BasicCalculatorActivity.class);
-                intent.putExtra("historyCalc", calc);
+                intent.putExtra("selectedCalc", finalCalc);
+                intent.putExtra("resultSaver", resultSaver);
                 context.startActivity(intent);
             }
         });

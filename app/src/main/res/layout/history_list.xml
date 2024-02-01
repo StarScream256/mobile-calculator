@@ -13,7 +13,6 @@
         <LinearLayout
             android:id="@+id/history_list"
             android:layout_weight="1"
-            android:onClick="reCalculate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -44,7 +43,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_gravity="center"
-            android:src="@drawable/baseline_more_vert_24" />
+            android:src="@drawable/baseline_edit_24" />
     </LinearLayout>
 
 </LinearLayout>

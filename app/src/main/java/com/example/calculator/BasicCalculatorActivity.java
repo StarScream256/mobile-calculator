@@ -31,6 +31,16 @@ public class BasicCalculatorActivity extends AppCompatActivity {
 
         inputExpression = findViewById(R.id.inputExpression);
 
+        Intent intent = getIntent();
+        if (intent.getSerializableExtra("resultSaver") != null) {
+            resultSaver = (ArrayList<String>) intent.getSerializableExtra("resultSaver");
+        }
+
+        if (intent.getStringExtra("selectedCalc") != null) {
+            String selectedCalc = (String) intent.getStringExtra("selectedCalc");
+            inputExpression.setText(selectedCalc);
+        }
+
         btnClear = findViewById(R.id.btnClear);
         btnDelete = findViewById(R.id.btnDelete);
         btnOpenBracket = findViewById(R.id.btnOpenBracket);
@@ -72,8 +82,6 @@ public class BasicCalculatorActivity extends AppCompatActivity {
         btnNum7.setOnClickListener(onClickListener);
         btnNum8.setOnClickListener(onClickListener);
         btnNum9.setOnClickListener(onClickListener);
-
-
     }
 
     @Override
@@ -204,5 +212,9 @@ public class BasicCalculatorActivity extends AppCompatActivity {
         intent.putExtra("resultSaver", resultSaver);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+    }
+
+    public void navigateToMenu(View view) {
+        startActivity(new Intent(BasicCalculatorActivity.this, MenuActivity.class));
     }
 }
