@@ -33,5 +33,5 @@ public class TemperatureCalculatorActivity extends AppCompatActivity {
             AppCompatButton button = (AppCompatButton) v;
             String buttonText = button.getText().toString();
         }
-    }
+    };
 }
