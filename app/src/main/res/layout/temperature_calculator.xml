@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/topNavTemperaturey"
+        android:id="@+id/topNavTemperature"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -44,7 +44,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topNavTemperaturey">
+        app:layout_constraintTop_toBottomOf="@id/topNavTemperature">
         <TextView
             android:id="@+id/from"
             android:layout_width="wrap_content"
@@ -57,21 +57,104 @@
             app:layout_constraintTop_toTopOf="@id/mainLayout"
             app:layout_constraintBottom_toBottomOf="@id/mainLayout"/>
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minHeight="0dp"
-            android:paddingHorizontal="3dp"
-            android:paddingVertical="10dp"
-            android:layout_marginStart="18dp"
-            app:layout_constraintStart_toEndOf="@id/from"
-            android:textAllCaps="false"
-            android:textSize="16sp"
+            android:id="@+id/fromCelcius"
             android:text="Celcius"
+            style="@style/temperatureBaseBtn"
             android:background="@drawable/style_logout_button"
-            app:layout_constraintTop_toTopOf="@id/mainLayout"/>
+            app:layout_constraintTop_toTopOf="@id/mainLayout"
+            app:layout_constraintStart_toEndOf="@id/from"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/fromKelvin"
+            android:text="K"
+            style="@style/temperatureBaseBtn"
+            android:background="@drawable/style_logout_button"
+            app:layout_constraintTop_toTopOf="@id/mainLayout"
+            app:layout_constraintStart_toEndOf="@id/fromCelcius"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/fromReamur"
+            android:text="R"
+            style="@style/temperatureBaseBtn"
+            android:background="@drawable/style_logout_button"
+            app:layout_constraintTop_toTopOf="@id/mainLayout"
+            app:layout_constraintStart_toEndOf="@id/fromKelvin"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <EditText
+        android:id="@+id/inputTemperature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="15dp"
+        android:textStyle="bold"
+        android:ems="10"
+        android:textColor="#000000"
+        android:inputType="number"
+        android:text="1"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/topNavTemperature"
+        app:layout_constraintTop_toBottomOf="@id/mainLayout" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="15dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputTemperature">
+        <TextView
+            android:id="@+id/to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Ke"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/mainLayout2"
+            app:layout_constraintTop_toTopOf="@id/mainLayout2"
+            app:layout_constraintBottom_toBottomOf="@id/mainLayout2"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/toCelcius"
+            android:text="C"
+            style="@style/temperatureBaseBtn"
+            android:background="@drawable/style_logout_button"
+            app:layout_constraintTop_toTopOf="@id/mainLayout2"
+            app:layout_constraintStart_toEndOf="@id/to"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/toKelvin"
+            android:text="Kelvin"
+            style="@style/temperatureBaseBtn"
+            android:background="@drawable/style_logout_button"
+            app:layout_constraintTop_toTopOf="@id/mainLayout2"
+            app:layout_constraintStart_toEndOf="@id/toCelcius"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/toReamur"
+            android:text="R"
+            style="@style/temperatureBaseBtn"
+            android:background="@drawable/style_logout_button"
+            app:layout_constraintTop_toTopOf="@id/mainLayout2"
+            app:layout_constraintStart_toEndOf="@id/toKelvin"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/resultTemperature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="15dp"
+        android:textStyle="bold"
+        android:ems="10"
+        android:textColor="#000000"
+        android:inputType="number"
+        android:text="1"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/topNavTemperature"
+        app:layout_constraintTop_toBottomOf="@id/mainLayout2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
