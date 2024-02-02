@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,7 +14,6 @@ public class TemperatureCalculatorActivity extends AppCompatActivity {
 
     private String fromState, toState;
     private AppCompatButton fromCelsius, fromKelvin, fromReamur, fromFahrenheit, toCelsius, toKelvin, toReamur, toFahrenheit;
-    private TextView fromStateView, toStateView;
     private EditText inputTemperature, resultTemperature;
 
     private final int activeButton = R.drawable.style_active_convertion_button;
@@ -35,9 +36,6 @@ public class TemperatureCalculatorActivity extends AppCompatActivity {
         toReamur = findViewById(R.id.toReamur);
         toFahrenheit = findViewById(R.id.toFahrenheit);
 
-        fromStateView = findViewById(R.id.fromState);
-        toStateView = findViewById(R.id.toState);
-
         inputTemperature = findViewById(R.id.inputTemperature);
         resultTemperature = findViewById(R.id.resultTemperature);
 
@@ -54,7 +52,13 @@ public class TemperatureCalculatorActivity extends AppCompatActivity {
         toState = Kelvin;
         fromCelsius.setBackgroundResource(activeButton);
         toKelvin.setBackgroundResource(activeButton);
-        fromStateView.setText(fromState);
+
+        inputTemperature.addTextChangedListener(inputTemperatureWatcher);
+
+        inputTemperature.setSelection(inputTemperature.getText().length());
+        double initialInput = Double.parseDouble(inputTemperature.getText().toString());
+        double initialResult = calculateTemperature(fromState, toState, initialInput);
+        resultTemperature.setText(String.valueOf(initialResult));
     }
 
     private final View.OnClickListener fromClickListener = new View.OnClickListener() {
@@ -83,7 +87,13 @@ public class TemperatureCalculatorActivity extends AppCompatActivity {
                 }
                 removeFromState(currentFromState, buttonText);
             }
-            fromStateView.setText(fromState);
+            String reqInput = inputTemperature.getText().toString();
+            double input = 0;
+            if (!reqInput.equals("0")) {
+                input = Double.parseDouble(reqInput);
+            }
+            double result = calculateTemperature(fromState, toState, input);
+            resultTemperature.setText(String.valueOf(result));
         }
     };
 
@@ -129,7 +139,13 @@ public class TemperatureCalculatorActivity extends AppCompatActivity {
                 }
                 removeToState(currentFromState, buttonText);
             }
-            toStateView.setText(toState);
+            String reqInput = inputTemperature.getText().toString();
+            double input = 0;
+            if (!reqInput.equals("0")) {
+                input = Double.parseDouble(reqInput);
+            }
+            double result = calculateTemperature(fromState, toState, input);
+            resultTemperature.setText(String.valueOf(result));
         }
     };
 
@@ -154,28 +170,26 @@ public class TemperatureCalculatorActivity extends AppCompatActivity {
         double scale = 0;
         if (fromState.equals(Celsius)) {
             if (toState.equals(Reamur)) {
-                scale = (double) 4/5;
+                scale = (double) inputTemperature * 4/5;
             } else if (toState.equals(Kelvin)) {
-                scale = 273;
+                scale = inputTemperature + 273.15;
             } else if (toState.equals(Fahrenheit)) {
-                scale = 1.5;
+                scale = (double) (inputTemperature * 9/5) + 32;
+            } else if (toState.equals(Celsius)) {
+                scale = inputTemperature;
             }
-
-            result = toState.equals(Fahrenheit)
-                    ? inputTemperature * scale + 32
-                    : inputTemperature * scale;
+            result = scale;
         } else if (fromState.equals(Kelvin)) {
             if (toState.equals(Celsius)) {
-                scale = -273;
+                scale = inputTemperature - 273.15;
             } else if (toState.equals(Reamur)) {
-                scale = (double) 4/5;
+                scale = (double) 4/5 * inputTemperature;
             } else if (toState.equals(Fahrenheit)) {
                 scale = (double) 9/5 * (inputTemperature - 273.15) + 32;
+            } else if (toState.equals(Kelvin)) {
+                scale = inputTemperature;
             }
-
-            result = toState.equals(Fahrenheit)
-                    ? scale
-                    : inputTemperature * scale;
+            result = scale;
         } else if (fromState.equals(Reamur)) {
             if (toState.equals(Celsius)) {
                 scale = (double) 5/4;
@@ -183,16 +197,56 @@ public class TemperatureCalculatorActivity extends AppCompatActivity {
                 scale = (double) 5/4 * inputTemperature + 273;
             } else if (toState.equals(Fahrenheit)) {
                 scale = (double) 9/4 * inputTemperature + 32;
+            } else if (toState.equals(Reamur)) {
+                scale = inputTemperature;
             }
-
-            result = toState.equals(Kelvin) || toState.equals(Fahrenheit)
-                    ? scale
-                    : inputTemperature * scale;
+            result = scale;
+        } else if (fromState.equals(Fahrenheit)) {
+            if (toState.equals(Celsius)) {
+                scale = (double) 5/9 * (inputTemperature - 32);
+            } else if (toState.equals(Kelvin)) {
+                scale = (double) 5/9 * (inputTemperature - 32) + 273.15;
+            } else if (toState.equals(Reamur)) {
+                scale = (double) 4/9 * (inputTemperature - 32);
+            } else if (toState.equals(Fahrenheit)) {
+                scale = inputTemperature;
+            }
+            result = scale;
         }
         return result;
     }
 
+    private final TextWatcher inputTemperatureWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String reqInput = inputTemperature.getText().toString();
+            double input = 0;
+            if (reqInput.length() < 1) {
+                inputTemperature.setText("0");
+                inputTemperature.setSelection(inputTemperature.getText().length());
+            } else if (reqInput.length() > 1 && reqInput.charAt(0) == '0') {
+                inputTemperature.setText(reqInput.substring(1));
+                inputTemperature.setSelection(inputTemperature.getText().length());
+                input = Double.parseDouble(reqInput);
+            } else {
+                input = Double.parseDouble(reqInput);
+            }
+            double result = calculateTemperature(fromState, toState, input);
+            resultTemperature.setText(String.valueOf(result));
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+
     public void navigateBack(View view) {
         finish();
     }
-} +
+}

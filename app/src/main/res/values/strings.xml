@@ -13,7 +13,7 @@
     <string name="registration">Registrasi</string>
     <string name="registration_description">Masukkan kredensial untuk membuat akun</string>
 
-    <string name="history_title">Saved History</string>
+    <string name="history_title">Riwayat</string>
 
     <string name="profile_title">Profile</string>
 </resources>

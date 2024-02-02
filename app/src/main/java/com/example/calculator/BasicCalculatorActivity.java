@@ -156,7 +156,16 @@ public class BasicCalculatorActivity extends AppCompatActivity {
 
     private void saveResult(String expression, String result) {
         String expRes = expression + "=" + result;
-        resultSaver.add(expRes);
+        String previousExp;
+        if (resultSaver.size() < 1) {
+            previousExp = "no data";
+        } else {
+            previousExp = resultSaver.get(resultSaver.size() - 1);
+        }
+
+        if (resultSaver.size() == 0 || !expRes.equals(previousExp)) {
+            resultSaver.add(expRes);
+        }
     }
 
     // Tampilkan popup ketika klik save
