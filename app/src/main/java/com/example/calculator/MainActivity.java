@@ -73,4 +73,10 @@ public class MainActivity extends AppCompatActivity {
             toast.show();
         }
     }
+
+    public void skipLogin(View view) {
+        Intent login = new Intent(MainActivity.this, BasicCalculatorActivity.class);
+        finish();
+        startActivity(login);
+    }
 }

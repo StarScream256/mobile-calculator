@@ -9,6 +9,15 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <style name="baseNumBtn">
+        <item name="android:layout_height">60dp</item>
+        <item name="android:minWidth">65dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
     <style name="profileImage">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>

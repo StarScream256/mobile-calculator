@@ -85,6 +85,9 @@ public class BasicCalculatorActivity extends AppCompatActivity {
         btnNum7.setOnClickListener(onClickListener);
         btnNum8.setOnClickListener(onClickListener);
         btnNum9.setOnClickListener(onClickListener);
+
+        String precalculate = "precalculate";
+        evaluateExp(precalculate);
     }
 
     @Override
@@ -105,8 +108,6 @@ public class BasicCalculatorActivity extends AppCompatActivity {
             if (buttonText.equals("=")) {
                 if (!inputExpression.getText().toString().equals("") && !inputExpression.getText().toString().equals("0")) {
                     evaluateExp(inputExpression.getText().toString());
-                } else {
-                    inputExpression.setText("0");
                 }
             } else if (buttonText.equals("C")) {
                 inputExpression.setText(null);
@@ -133,7 +134,6 @@ public class BasicCalculatorActivity extends AppCompatActivity {
     private void evaluateExp(String expression) {
         WebView webView = new WebView(BasicCalculatorActivity.this);
         webView.getSettings().setJavaScriptEnabled(true);
-        if (expression.startsWith("0")) expression = expression.replaceFirst("0", "");
 
         if (expression.contains("÷")) expression = expression.replace("÷", "/");
         if (expression.contains("×")) expression = expression.replace("×", "*");
@@ -159,10 +159,12 @@ public class BasicCalculatorActivity extends AppCompatActivity {
 
         webView.evaluateJavascript(script, value -> {
             if (value.equals("null") || value.equals("")) {
-                inputExpression.setText("Bermasalah");
-                saveResult(finalExpression, "Bermasalah");
-                toastMessage.setText("Hitungan anda bermasalah");
-                toast.show();
+                if (!finalExpression.equals("precalculate")) {
+                    inputExpression.setText("Bermasalah");
+                    saveResult(finalExpression, "Bermasalah");
+                    toastMessage.setText("Hitungan anda bermasalah");
+                    toast.show();
+                }
             } else {
                 if (value.contains(".")) value = value.replace(".", ",");
                 if (value.contains("*")) value = value.replace("*", "×");
