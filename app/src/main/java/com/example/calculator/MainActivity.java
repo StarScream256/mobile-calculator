@@ -5,20 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.util.Objects;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText usernameInput, passwordInput;
     private ImageView toggleIcon;
-    private LinearLayout loginErrorContainer;
-    private TextView loginErrorMessage;
     private boolean passwordVisible = false;
 
     @Override
@@ -29,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
         usernameInput = findViewById(R.id.usernameInput);
         passwordInput = findViewById(R.id.passwordInput);
         toggleIcon = findViewById(R.id.togglePasswordIconLogin);
-        loginErrorContainer = findViewById(R.id.loginErrorContainer);
-        loginErrorMessage = findViewById(R.id.loginErrorMessage);
     }
 
     public void navigateToRegistration(View view) {
@@ -52,21 +49,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
-        loginErrorContainer.setVisibility(View.INVISIBLE);
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast, (ViewGroup) findViewById(R.id.toast_root));
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.TOP, 0, 12);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        TextView toastMessage = layout.findViewById(R.id.toast_message);
+        layout.setBackgroundResource(R.drawable.style_error_container);
+
         String username = usernameInput.getText().toString();
         String password = passwordInput.getText().toString();
         if (username.equals("") || password.equals("")) {
-            String errorMessage = "Username dan password harap diisi";
-            loginErrorMessage.setText(errorMessage);
-            loginErrorContainer.setVisibility(View.VISIBLE);
+            toastMessage.setText("Username dan pasword harus diisi");
+            toast.show();
         } else if (username.equals("username") && password.equals("password")) {
             Intent login = new Intent(MainActivity.this, BasicCalculatorActivity.class);
             finish();
             startActivity(login);
         } else {
-            String errorMessage = "Username atau password salah";
-            loginErrorMessage.setText(errorMessage);
-            loginErrorContainer.setVisibility(View.VISIBLE);
+            toastMessage.setText("Username atau password salah");
+            toast.show();
         }
     }
 }

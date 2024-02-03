@@ -7,35 +7,49 @@
     android:layout_height="match_parent"
     android:padding="24dp">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/login_title"
-        android:textSize="34sp"
-        android:textStyle="bold"
+    <ImageView
+        android:id="@+id/calculator_login_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_calculator_icon"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/login_title"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/login_title"
+        android:gravity="center"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/calculator_login_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/login_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="12dp"
         android:text="@string/login_description"
         android:textSize="16sp"
+        android:textAlignment="center"
         android:textColor="#A5000000"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintTop_toBottomOf="@id/login_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="24dp">
+        android:layout_marginTop="14dp"
+        app:layout_constraintTop_toBottomOf="@id/login_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/username_layout"
@@ -72,9 +86,10 @@
             android:id="@+id/password_layout"
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/username_layout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintEnd_toEndOf="parent">
 
             <EditText
                 android:id="@+id/passwordInput"
@@ -129,42 +144,11 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <LinearLayout
-        android:id="@+id/loginErrorContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:orientation="vertical"
-        android:visibility="invisible"
-        android:background="@drawable/style_login_error_container"
-        android:paddingVertical="8dp"
-        android:paddingHorizontal="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button">
-
-        <TextView
-            android:id="@+id/loginErrorTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:text="Login gagal" />
-
-        <TextView
-            android:id="@+id/loginErrorMessage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#323131"
-            android:text="" />
-    </LinearLayout>
-
-    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -183,7 +167,7 @@
             android:layout_marginStart="5dp"
             android:layout_weight="1"
             android:onClick="navigateToRegistration"
-            android:paddingVertical="15dp"
+            android:paddingVertical="5dp"
             android:text="@string/registration"
             android:textColor="#ED5F0F"
             android:textSize="16sp"

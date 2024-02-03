@@ -9,11 +9,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -100,7 +103,11 @@ public class BasicCalculatorActivity extends AppCompatActivity {
             if (inputExpression.getText().toString().equals("Bermasalah")) inputExpression.setText("");
 
             if (buttonText.equals("=")) {
-                evaluateExp(inputExpression.getText().toString());
+                if (!inputExpression.getText().toString().equals("") && !inputExpression.getText().toString().equals("0")) {
+                    evaluateExp(inputExpression.getText().toString());
+                } else {
+                    inputExpression.setText("0");
+                }
             } else if (buttonText.equals("C")) {
                 inputExpression.setText(null);
             } else if (buttonText.equals("Del")) {
@@ -139,10 +146,23 @@ public class BasicCalculatorActivity extends AppCompatActivity {
                 "})()";
 
         final String finalExpression = expression;
+
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast, (ViewGroup) findViewById(R.id.toast_root));
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.TOP, 0, 12);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        TextView toastMessage = layout.findViewById(R.id.toast_message);
+        layout.setBackgroundResource(R.drawable.style_error_container);
+
         webView.evaluateJavascript(script, value -> {
             if (value.equals("null") || value.equals("")) {
                 inputExpression.setText("Bermasalah");
                 saveResult(finalExpression, "Bermasalah");
+                toastMessage.setText("Hitungan anda bermasalah");
+                toast.show();
             } else {
                 if (value.contains(".")) value = value.replace(".", ",");
                 if (value.contains("*")) value = value.replace("*", "×");
