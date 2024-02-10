@@ -21,4 +21,8 @@ public class MenuActivity extends AppCompatActivity {
     public void navigateToTemperature(View view) {
         startActivity(new Intent(MenuActivity.this, TemperatureCalculatorActivity.class));
     }
+
+    public void navigateToDistance(View view) {
+        startActivity(new Intent(MenuActivity.this, DistanceCalculatorActivity.class));
+    }
 }

@@ -52,8 +52,7 @@
             android:drawableTop="@drawable/baseline_social_distance_24"
             android:drawablePadding="10dp"
             android:textSize="16sp"
-            android:textColor="#68000000"
-            android:drawableTint="#68000000"
+            android:onClick="navigateToDistance"
             android:text="Panjang"/>
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="wrap_content"
