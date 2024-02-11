@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -57,6 +58,28 @@ public class DistanceCalculatorActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Editable distanceFromText = distanceFrom.getText();
+                if (distanceFromText.toString().length() < 1) {
+                    distanceFrom.setText("0");
+                } else if (
+                        distanceFromText.toString().length() > 1
+                        && distanceFromText.toString().charAt(0) == '0'
+                        && !s.toString().contains(".")
+                    ) {
+                    if (s.toString().equals("00")) {
+                        distanceFrom.setText("0");
+                    } else {
+//                        Toast.makeText(
+//                                DistanceCalculatorActivity.this,
+//                                s.toString().contains(".") + " instead " + s,
+//                                Toast.LENGTH_SHORT
+//                        ).show();
+                        int nonZeroIndex = findFirstNonZeroIndex(distanceFromText.toString());
+                        String notStartWithZeroText = distanceFromText.toString().substring(nonZeroIndex);
+                        distanceFrom.setText(notStartWithZeroText);
+                    }
+                }
+                distanceFrom.setSelection(distanceFrom.getText().toString().length());
                 calculateResult();
             }
 
@@ -67,12 +90,21 @@ public class DistanceCalculatorActivity extends AppCompatActivity {
         });
     }
 
+    private static int findFirstNonZeroIndex(String string) {
+        int index = 0;
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) != '0') {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+
     private void calculateResult() {
-        Double from = Double.parseDouble(Objects.requireNonNull(distanceFrom.getText()).toString());
-        Double result = 0.0;
-        if (distanceFrom.equals("") || distanceFrom.length() < 1) {
-            distanceFrom.setText("0");
-        } else {
+        if (!distanceFrom.getText().toString().equals("0.")) {
+            Double from = Double.parseDouble(Objects.requireNonNull(distanceFrom.getText()).toString());
+            Double result = 0.0;
             if (distanceFromState.equals(distanceItems[0])) { // km
                 if (distanceToState.equals(distanceItems[0])) result = from; // km
                 else if (distanceToState.equals(distanceItems[1])) result = from * 1_000; // m
@@ -164,7 +196,7 @@ public class DistanceCalculatorActivity extends AppCompatActivity {
                 else if (distanceToState.equals(distanceItems[7])) result = from * 12; // in
                 else if (distanceToState.equals(distanceItems[8])) result = from; // ft
             }
+            distanceTo.setText(String.valueOf(result));
         }
-        distanceTo.setText(String.valueOf(result));
     }
 }
